@@ -47,7 +47,7 @@ class LinkedList:
         last.next = newnode
 
     # Delete a node given key
-    def deleteNode(self, key):
+    def delete_by_key(self, key):
         temp = self.head
         if temp is not None:
             if temp.data == key:
@@ -64,6 +64,35 @@ class LinkedList:
         prev.next = temp.next
         temp = None
         return
+
+    # Delete a node given postion
+    def delete_by_position(self, pos):
+		if self.head is None:
+			print 'No elements to delete. Please add some'
+
+    	temp = self.head.next
+    	count = 1
+
+    	if pos == count:
+    		self.head = self.head.next # First element is always head in the list
+    		return
+
+    	while temp is not None:
+    		count += 1
+    		if count == pos:
+    			break
+    		prev = temp
+    		temp = temp.next
+
+    	if temp is None:
+    		print 'No element at this postion'
+    		return
+
+    	prev.next = temp.next
+    	temp = None
+    	return
+
+
 
 # Code execution starts here
 if __name__ == '__main__':
@@ -88,7 +117,16 @@ if __name__ == '__main__':
     # Printing updated list
     llist.display()
     # Delete -1, 3
-    llist.deleteNode(-1)
-    llist.deleteNode(3)
+    llist.delete_by_key(-1)
+    llist.delete_by_key(3)
+    # Printing updated list
+    llist.display()
+    # Appending new node
+    llist.append(6)
+    llist.append(7)
+    # Printing updated list
+    llist.display()
+    # Deleting element at 3rd postion
+    llist.delete_by_position(1)
     # Printing updated list
     llist.display()
