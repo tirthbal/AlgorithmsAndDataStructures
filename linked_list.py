@@ -69,28 +69,47 @@ class LinkedList:
     def delete_by_position(self, pos):
 		if self.head is None:
 			print 'No elements to delete. Please add some'
+		temp = self.head.next
+		count = 1
 
-    	temp = self.head.next
-    	count = 1
+		if pos == count:
+			self.head = self.head.next # First element is always head in the list
+			return
 
-    	if pos == count:
-    		self.head = self.head.next # First element is always head in the list
-    		return
+		while temp is not None:
+			count += 1
+			if count == pos:
+				break
+			prev = temp
+			temp = temp.next
 
-    	while temp is not None:
+		if temp is None:
+			print 'No element at this postion'
+			return
+
+		prev.next = temp.next
+		temp = None
+
+    # Helper to find the length recursively
+    def len_help(self, ptr):
+    	if not ptr:
+    		return 0
+    	return 1 + self.len_help(ptr.next)
+
+    # Find length of linked list recursively
+    def length_recur(self):
+    	return self.len_help(self.head)
+
+    # Find length iteratively
+    def length(self):
+    	count = 0
+    	ptr = self.head
+    	while ptr is not None:
     		count += 1
-    		if count == pos:
-    			break
-    		prev = temp
-    		temp = temp.next
+    		ptr = ptr.next
+    	return count
 
-    	if temp is None:
-    		print 'No element at this postion'
-    		return
 
-    	prev.next = temp.next
-    	temp = None
-    	return
 
 
 
@@ -130,3 +149,8 @@ if __name__ == '__main__':
     llist.delete_by_position(1)
     # Printing updated list
     llist.display()
+    # Length of linked list (recursively)
+    print llist.length_recur()
+    # Length of linked list iteratively
+    print llist.length()
+
