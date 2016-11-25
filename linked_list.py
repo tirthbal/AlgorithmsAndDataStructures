@@ -28,23 +28,27 @@ class LinkedList:
         newnode = Node(data)
         newnode.next = self.head
         self.head = newnode
+        self.display()
 
     # Inserting element after given node
     def insert_after(self, prev_node, data):
         newnode = Node(data)
         newnode.next = prev_node.next
         prev_node.next = newnode
+        self.display()
 
     # Append node in the end
     def append(self, data):
         newnode = Node(data)
         if self.head is None:
             self.head = newnode
+            self.display()
             return
         last = self.head
         while last.next is not None:
             last = last.next
         last.next = newnode
+        self.display()
 
     # Delete a node given key
     def delete_by_key(self, key):
@@ -63,6 +67,7 @@ class LinkedList:
             return
         prev.next = temp.next
         temp = None
+        self.display()
         return
 
     # Delete a node given postion
@@ -89,6 +94,7 @@ class LinkedList:
 
 		prev.next = temp.next
 		temp = None
+		self.display()
 
     # Helper to find the length recursively
     def len_help(self, ptr):
@@ -109,6 +115,41 @@ class LinkedList:
     		ptr = ptr.next
     	return count
 
+    # Swap two nodes
+    def swap_nodes(self, x, y):
+    	if not self.head:
+    		return
+    	if x == y:
+    		return
+    	prevX , curX = None, self.head
+    	while curX and curX.data != x:
+    		prevX = curX
+    		curX = curX.next
+
+    	prevY, curY = None, self.head
+    	while curY and curY.data != y:
+    		prevY = curY
+    		curY = curY.next
+
+    	if not curX or not curY:
+    		return
+
+    	if prevX:
+    		prevX.next = curY
+    	else:
+    		self.head = curY
+
+    	if prevY:
+    		prevY.next = curX
+    	else:
+    		self.head = curX
+
+    	temp = curX.next
+    	curX.next = curY.next
+    	curY.next = temp
+    	self.display()
+
+
 
 
 
@@ -123,18 +164,12 @@ if __name__ == '__main__':
     # Three nodes have been created
     llist.head.next = second
     second.next = third
-    # Printing the linked list
-    llist.display()
     # Inseting two nodes in front
     llist.push(0)
     llist.push(-1)
-    # Printing updated list
-    llist.display()
     # Appending new node
     llist.append(4)
     llist.append(5)
-    # Printing updated list
-    llist.display()
     # Delete -1, 3
     llist.delete_by_key(-1)
     llist.delete_by_key(3)
@@ -143,14 +178,12 @@ if __name__ == '__main__':
     # Appending new node
     llist.append(6)
     llist.append(7)
-    # Printing updated list
-    llist.display()
     # Deleting element at 3rd postion
     llist.delete_by_position(1)
-    # Printing updated list
-    llist.display()
     # Length of linked list (recursively)
     print llist.length_recur()
     # Length of linked list iteratively
     print llist.length()
 
+    # Swap node with data 2 and node with data 6
+    llist.swap_nodes(1, 7)
