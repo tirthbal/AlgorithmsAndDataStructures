@@ -149,6 +149,17 @@ class LinkedList:
     	curY.next = temp
     	self.display()
 
+    def reverse(self):
+    	prev = None
+    	cur = self.head
+    	while cur is not None:
+    		nxt = cur.next
+    		cur.next = prev
+    		prev = cur
+    		cur = nxt
+    	self.head = prev
+    	self.display()
+
 
 
 
@@ -173,8 +184,6 @@ if __name__ == '__main__':
     # Delete -1, 3
     llist.delete_by_key(-1)
     llist.delete_by_key(3)
-    # Printing updated list
-    llist.display()
     # Appending new node
     llist.append(6)
     llist.append(7)
@@ -184,6 +193,7 @@ if __name__ == '__main__':
     print llist.length_recur()
     # Length of linked list iteratively
     print llist.length()
-
     # Swap node with data 2 and node with data 6
     llist.swap_nodes(1, 7)
+    # Reverse a linked list
+    llist.reverse()
