@@ -160,6 +160,17 @@ class LinkedList:
     	self.head = prev
     	self.display()
 
+    def reverseRecur(self, ptr):
+    	if ptr is None:
+    		return
+    	first = ptr
+    	if first.next is None:
+    		return
+    	self.reverseRecur(first.next)
+    	first.next.next = ptr
+    	first.next = None
+    	self.head = ptr.next
+
 
 
 
@@ -197,3 +208,6 @@ if __name__ == '__main__':
     llist.swap_nodes(1, 7)
     # Reverse a linked list
     llist.reverse()
+    # Reverse a linked list recursively
+    llist.reverseRecur(llist.head)
+    llist.display()
