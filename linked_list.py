@@ -171,7 +171,12 @@ class LinkedList:
     	first.next = None
     	self.head = ptr.next
 
-
+    def merge_list(self, src_ptr, dest_ptr):
+    	cur_ptr = self.head
+    	while src_ptr and cur_ptr:
+    		if src_ptr.data < cur_ptr.data:
+    			tmp = src_ptr
+    			src_ptr = src_ptr.next
 
 
 
