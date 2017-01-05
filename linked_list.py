@@ -28,14 +28,12 @@ class LinkedList:
         newnode = Node(data)
         newnode.next = self.head
         self.head = newnode
-        self.display()
 
     # Inserting element after given node
     def insert_after(self, prev_node, data):
         newnode = Node(data)
         newnode.next = prev_node.next
         prev_node.next = newnode
-        self.display()
 
     # Append node in the end
     def append(self, data):
@@ -48,7 +46,6 @@ class LinkedList:
         while last.next is not None:
             last = last.next
         last.next = newnode
-        self.display()
 
     # Delete a node given key
     def delete_by_key(self, key):
@@ -67,7 +64,6 @@ class LinkedList:
             return
         prev.next = temp.next
         temp = None
-        self.display()
         return
 
     # Delete a node given postion
@@ -170,7 +166,7 @@ class LinkedList:
 
 
 
-def merge_sorted_linked_list(list1, list2):
+def merge_two_sorted_linked_list(list1, list2):
 	list3 = LinkedList()
 	list3.head = Node()
 	cur_ptr = list1.head
@@ -200,59 +196,94 @@ def merge_sorted_linked_list(list1, list2):
 	return list3
 
 
+def merge_sort_linked_list(ll, cnt):
+    ptr = ll.head
+    if not ptr:
+        return ll
+    if ptr.next is None:
+        return ll
+    lst1 = LinkedList()
+    lst1.head = Node(ptr.data)
+    ptr = ptr.next
+    for i in range(1, cnt//2):
+        lst1.append(ptr.data)
+        ptr = ptr.next
+    lst2 = LinkedList()
+    lst2.head = Node(ptr.data)
+    ptr = ptr.next
+    for i in range(1, cnt-cnt//2):
+        lst2.append(ptr.data)
+        ptr = ptr.next
+    lst1 = merge_sort_linked_list(lst1, cnt//2)
+    lst2 = merge_sort_linked_list(lst2, cnt-cnt//2)
+    ll = merge_two_sorted_linked_list(lst1, lst2)
+    return ll
+
+
 
 
 # Code execution starts here
 if __name__ == '__main__':
     # Start with empty list
-    # llist = LinkedList()
-    # llist.head = Node(1)
-    # second = Node(2)
-    # third = Node(3)
-    # # Three nodes have been created
-    # llist.head.next = second
-    # second.next = third
-    # # Inseting two nodes in front
-    # llist.push(0)
-    # llist.push(-1)
-    # # Appending new node
-    # llist.append(4)
-    # llist.append(5)
-    # # Delete -1, 3
-    # llist.delete_by_key(-1)
-    # llist.delete_by_key(3)
-    # # Appending new node
-    # llist.append(6)
-    # llist.append(7)
-    # # Deleting element at 3rd postion
-    # llist.delete_by_position(1)
-    # # Length of linked list (recursively)
-    # print llist.length_recur()
-    # # Length of linked list iteratively
-    # print llist.length()
-    # # Swap node with data 2 and node with data 6
-    # llist.swap_nodes(1, 7)
-    # # Reverse a linked list
+    llist = LinkedList()
+    llist.head = Node(1)
+    second = Node(2)
+    third = Node(3)
+    # Three nodes have been created
+    llist.head.next = second
+    second.next = third
+    # Inseting two nodes in front
+    llist.push(0)
+    llist.push(-1)
+    # Appending new node
+    llist.append(4)
+    llist.append(5)
+    # Delete -1, 3
+    llist.delete_by_key(-1)
+    llist.delete_by_key(3)
+    # Appending new node
+    llist.append(6)
+    llist.append(7)
+    # Deleting element at 3rd postion
+    llist.delete_by_position(1)
+    # Length of linked list (recursively)
+    print llist.length_recur()
+    # Length of linked list iteratively
+    print llist.length()
+    # Swap node with data 2 and node with data 6
+    llist.swap_nodes(1, 7)
+    # Reverse a linked list
     # llist.reverse()
     # # Reverse a linked list recursively
     # llist.reverseRecur(llist.head)
-    # llist.display()
+    llist.display()
     # Merging two linked list
-    llist2 = LinkedList()
-    llist3 = LinkedList()
-    # Appending data in llist2
-    llist2.append(5)
-    llist2.append(10)
-    llist2.append(15)
-    # Display 2nd list
-    llist2.display()
-    # Appending data in llist3
-    llist3.head = Node(2)
-    llist3.append(3)
-    llist3.append(20)
-    # Display 3rd list
-    llist3.display()
-    merged = LinkedList()
-    merged = merge_sorted_linked_list(llist2, llist3)
-    merged.display()
+    # llist2 = LinkedList()
+    # llist3 = LinkedList()
+    # # Appending data in llist2
+    # llist2.append(5)
+    # llist2.append(10)
+    # llist2.append(15)
+    # # Display 2nd list
+    # llist2.display()
+    # # Appending data in llist3
+    # llist3.head = Node(2)
+    # llist3.append(3)
+    # llist3.append(20)
+    # # Display 3rd list
+    # llist3.display()
+    # merged = LinkedList()
+    # merged = merge_two_sorted_linked_list(llist2, llist3)
+    # merged.display()
+    llist = merge_sort_linked_list(llist, llist.length())
+    llist.display()
+    list3 = LinkedList()
+    list3.append(5)
+    list3.append(2)
+    list3.append(11)
+    list3.append(1)
+    list3.append(7)
+    list3.append(9)
+    list3 = merge_sort_linked_list(list3, list3.length())
+    list3.display()
 
