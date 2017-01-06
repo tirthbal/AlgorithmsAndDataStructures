@@ -164,6 +164,33 @@ class LinkedList:
     	first.next = None
     	self.head = ptr.next
 
+    def removeLoop(self, slwnode):
+        ptr1 = self.head
+        while True:
+            ptr2 = slwnode
+            while ptr2.next != slwnode and ptr2.next != ptr1:
+                ptr2 = ptr2.next
+            if ptr2.next == ptr1:
+                break
+            ptr1 = ptr1.next
+        ptr2.next = None
+
+    def isLoop(self):
+        slwptr = self.head
+        fastptr = self.head
+        while True:
+            slwptr = slwptr.next
+            if not slwptr:
+                return False
+            fastptr = fasptr.next.next
+            if not fasptr.next.next:
+                return False
+            if fastptr.data == slwptr.data:
+                removeLoop(slwptr)
+                return True
+
+
+
 
 
 def merge_two_sorted_linked_list(list1, list2):
