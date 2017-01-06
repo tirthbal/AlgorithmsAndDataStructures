@@ -189,6 +189,24 @@ class LinkedList:
                 self.removeLoop(slwptr)
                 return True
 
+    def isLoopAndRemove(self):
+        slwptr = self.head
+        fastptr = self.head.next
+        while fastptr and fastptr.next:
+            if slwptr == fastptr:
+                break
+            slwptr = slwptr.next
+            fastptr = fastptr.next.next
+
+        if fastptr == slwptr:
+            slwptr = self.head
+            while slwptr != fastptr.next:
+                slwptr = slwptr.next
+                fastptr = fastptr.next
+            fastptr.next = None
+            return True
+        return False
+
 
 
 
@@ -321,6 +339,8 @@ if __name__ == '__main__':
     list3.head.next.next.next.next = Node(5)
     list3.head.next.next.next.next.next = Node(6)
     list3.head.next.next.next.next.next.next = list3.head.next.next
-    print list3.isLoop()
+    # print list3.isLoop()
+    # list3.display()
+    print list3.isLoopAndRemove()
     list3.display()
 
