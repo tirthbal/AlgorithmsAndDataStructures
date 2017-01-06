@@ -182,11 +182,11 @@ class LinkedList:
             slwptr = slwptr.next
             if not slwptr:
                 return False
-            fastptr = fasptr.next.next
-            if not fasptr.next.next:
+            fastptr = fastptr.next.next
+            if not fastptr.next.next:
                 return False
-            if fastptr.data == slwptr.data:
-                removeLoop(slwptr)
+            if fastptr == slwptr:
+                self.removeLoop(slwptr)
                 return True
 
 
@@ -302,15 +302,25 @@ if __name__ == '__main__':
     # merged = LinkedList()
     # merged = merge_two_sorted_linked_list(llist2, llist3)
     # merged.display()
-    llist = merge_sort_linked_list(llist, llist.length())
-    llist.display()
+    # llist = merge_sort_linked_list(llist, llist.length())
+    # llist.display()
+    # list3 = LinkedList()
+    # list3.append(5)
+    # list3.append(2)
+    # list3.append(11)
+    # list3.append(1)
+    # list3.append(7)
+    # list3.append(9)
+    # list3 = merge_sort_linked_list(list3, list3.length())
+    # list3.display()
     list3 = LinkedList()
-    list3.append(5)
-    list3.append(2)
-    list3.append(11)
-    list3.append(1)
-    list3.append(7)
-    list3.append(9)
-    list3 = merge_sort_linked_list(list3, list3.length())
+    list3.head = Node(1)
+    list3.head.next = Node(2)
+    list3.head.next.next = Node(3)
+    list3.head.next.next.next = Node(4)
+    list3.head.next.next.next.next = Node(5)
+    list3.head.next.next.next.next.next = Node(6)
+    list3.head.next.next.next.next.next.next = list3.head.next.next
+    print list3.isLoop()
     list3.display()
 
