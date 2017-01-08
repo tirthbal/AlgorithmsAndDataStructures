@@ -209,6 +209,26 @@ class LinkedList:
 
 
 
+def reverse_group_of_size_k(ll, k):
+    ptr = ll.head
+    new_list = LinkedList()
+    while True:
+        cnt = 1
+        st = []
+        while cnt <= k and ptr:
+            st.append(ptr.data)
+            ptr = ptr.next
+            cnt += 1
+        while st:
+            ele = st.pop()
+            new_list.append(ele)
+        if not ptr:
+            break
+
+    return new_list
+
+
+
 
 
 def merge_two_sorted_linked_list(list1, list2):
@@ -322,25 +342,24 @@ if __name__ == '__main__':
     # merged.display()
     # llist = merge_sort_linked_list(llist, llist.length())
     # llist.display()
-    # list3 = LinkedList()
-    # list3.append(5)
-    # list3.append(2)
-    # list3.append(11)
-    # list3.append(1)
-    # list3.append(7)
-    # list3.append(9)
+    list3 = LinkedList()
+    for i in range(1, 10):
+        list3.append(i)
     # list3 = merge_sort_linked_list(list3, list3.length())
     # list3.display()
-    list3 = LinkedList()
-    list3.head = Node(1)
-    list3.head.next = Node(2)
-    list3.head.next.next = Node(3)
-    list3.head.next.next.next = Node(4)
-    list3.head.next.next.next.next = Node(5)
-    list3.head.next.next.next.next.next = Node(6)
-    list3.head.next.next.next.next.next.next = list3.head.next.next
+    # list3 = LinkedList()
+    # list3.head = Node(1)
+    # list3.head.next = Node(2)
+    # list3.head.next.next = Node(3)
+    # list3.head.next.next.next = Node(4)
+    # list3.head.next.next.next.next = Node(5)
+    # list3.head.next.next.next.next.next = Node(6)
+    # list3.head.next.next.next.next.next.next = list3.head.next.next
     # print list3.isLoop()
     # list3.display()
-    print list3.isLoopAndRemove()
+    # print list3.isLoopAndRemove()
+    # list3.display()
+    ## Reversing a linked list in size of k
     list3.display()
-
+    list3 = reverse_group_of_size_k(list3, 3)
+    list3.display() 
