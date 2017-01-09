@@ -228,9 +228,6 @@ def reverse_group_of_size_k(ll, k):
     return new_list
 
 
-
-
-
 def merge_two_sorted_linked_list(list1, list2):
 	list3 = LinkedList()
 	list3.head = Node()
@@ -283,6 +280,39 @@ def merge_sort_linked_list(ll, cnt):
     lst2 = merge_sort_linked_list(lst2, cnt-cnt//2)
     ll = merge_two_sorted_linked_list(lst1, lst2)
     return ll
+
+
+def add_two_number_as_ll(llist1, llist2):
+    first = llist1.head
+    second = llist2.head
+    res = LinkedList()
+    if not first and not second:
+        return res
+    carry = 0
+    while first and second:
+        num = carry + first.data + second.data
+        if num > 9:
+            carry = num // 10
+            num = num % 10
+        res.append(num)
+        first = first.next
+        second = second.next
+    while first:
+        num = first.data + carry
+        if num > 9:
+            carry = num // 10
+            num = num % 10
+        first = first.next
+
+    while second:
+        num = second.data + carry
+        if num > 9:
+            carry = num // 10
+            num = num % 10
+        res.append(num)
+        second = second.next
+    return res
+
 
 
 
