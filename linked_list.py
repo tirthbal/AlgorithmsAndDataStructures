@@ -207,6 +207,30 @@ class LinkedList:
             return True
         return False
 
+    def rotate_by_k_anti_clock(self, k):
+        len_ll = self.length()
+        k = k % len_ll
+        ptr = self.head
+        data = []
+        for i in range(0, k):
+            data.append(ptr.data)
+            ptr = ptr.next
+        new_node = Node(ptr.data)
+        self.head = new_node
+        ptr = ptr.next
+        while ptr:
+            new_node.next = ptr
+            new_node = new_node.next
+            ptr = ptr.next
+        for val in data:
+            tmp = Node(val)
+            new_node.next = tmp
+            new_node = new_node.next
+
+
+
+
+
 
 
 def reverse_group_of_size_k(ll, k):
@@ -390,6 +414,12 @@ if __name__ == '__main__':
     # print list3.isLoopAndRemove()
     # list3.display()
     ## Reversing a linked list in size of k
-    list3.display()
-    list3 = reverse_group_of_size_k(list3, 3)
-    list3.display() 
+    # list3.display()
+    # list3 = reverse_group_of_size_k(list3, 3)
+    # list3.display()
+    # Rotate linked list anticlock wise by k
+    list4 = LinkedList()
+    for i in range(1, 7):
+        list4.append(i)
+    list4.rotate_by_k_anti_clock(1)
+    list4.display() 
