@@ -31,19 +31,56 @@ class CircularLinkedList:
 	# Traversal in the circular linked list
 	def printList(self):
 		ptr = self.head
-
+		op = ''
 		if ptr != None:
-			print ptr.data
+			op += str(ptr.data)
 			while True:
 				ptr = ptr.next
 				if ptr == self.head:
 					break
-				print ptr.data
+				op += ' -> ' + str(ptr.data)
+		print op
+
+	def split_cll_in_two(self, head1, head2):
+		slwptr = self.head
+		fastptr = self.head
+
+		if not self.head:
+			return
+
+		# If htere are odd nodes in the circular list then
+        # fast_ptr->next becomes head and for even nodes
+        # fast_ptr->next->next becomes head
+		while (fastptr.next != self.head and fastptr.next.next != self.head):
+			fastptr = fastptr.next.next
+			slwptr = slwptr.next
+
+		# If there are even nodes
+		if fastptr.next.next == self.head:
+			fastptr = fastptr.next
+
+		# Set the head of first halve
+		head1.head = self.head
+
+		# Set the head of second halve
+		if self.head.next != self.head:
+			head2.head = slwptr.next
+
+		# Make the second half circular
+		fastptr.next = slwptr.next
+
+		# Make the first halve circular
+		slwptr.next = self.head 
 
 
 # Code execution starts here
 if __name__ == '__main__':
 	cll = CircularLinkedList()
-	for i in [4, 3 , 2, 1]:
+	for i in [5, 4, 3 , 2, 1]:
 		cll.push(i)
 	cll.printList()
+	head1 = CircularLinkedList()
+	head2 = CircularLinkedList()
+	cll.split_cll_in_two(head1, head2)
+	head1.printList()
+	head2.printList()
