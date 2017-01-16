@@ -70,7 +70,24 @@ class CircularLinkedList:
 		fastptr.next = slwptr.next
 
 		# Make the first halve circular
-		slwptr.next = self.head 
+		slwptr.next = self.head
+
+	def insert_in_sorted(self, data):
+		if not self.head:
+			self.push(data)
+			return
+		if self.head.data > data:
+			self.push(data)
+			return
+		new_node = Node(data)
+
+		cur_node = self.head
+		while cur_node.next != self.head and cur_node.next.data < new_node.data:
+			cur_node = cur_node.next
+
+		new_node.next = cur_node.next
+		cur_node.next = new_node
+
 
 
 # Code execution starts here
@@ -84,3 +101,7 @@ if __name__ == '__main__':
 	cll.split_cll_in_two(head1, head2)
 	head1.printList()
 	head2.printList()
+	new_cll = CircularLinkedList()
+	for i in [3, 5, 4, 1, 2]:
+		new_cll.insert_in_sorted(i)
+	new_cll.printList()
