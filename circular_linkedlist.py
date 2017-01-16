@@ -73,14 +73,19 @@ class CircularLinkedList:
 		slwptr.next = self.head
 
 	def insert_in_sorted(self, data):
+
+		# If linked list is empty
 		if not self.head:
 			self.push(data)
 			return
+		
+		# If the new node data is smaller than head
 		if self.head.data > data:
 			self.push(data)
 			return
-		new_node = Node(data)
 
+		# Otherwise, new node will come after the head
+		new_node = Node(data)
 		cur_node = self.head
 		while cur_node.next != self.head and cur_node.next.data < new_node.data:
 			cur_node = cur_node.next
