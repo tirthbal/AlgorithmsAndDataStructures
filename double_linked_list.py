@@ -56,15 +56,41 @@ class DoubleLinkedList:
 		ptr.next = new_node
 
 
+	def insert_after(self, prev_node, data):
+
+		# Initializing a new node
+		new_node = Node(data)
+
+		# Saving the cur next node of prev node
+		next_node = prev_node.next
+
+		# Make new node as new next node of prev node
+		prev_node.next = new_node
+
+		# Make prev next node as next node of new node
+		new_node.next = next_node
+
+		# Make new node as prev for prev_node next node
+		if next_node:
+			next_node.prev = new_node
+
+		# Make prev node as prev node of new node
+		new_node.prev = prev_node
+
+
 	# Print dll from Left to Right
 	def print_forward(self):
 
 		# Starting traversal from the begining
 		cur_ptr = self.head
 
+		op = ''
 		while cur_ptr != None:
-			print cur_ptr.data ,
+			op += ' -><- ' if op else ''
+			op += str(cur_ptr.data)
 			cur_ptr = cur_ptr.next
+
+		print op
 
 
 	# Print dll from right to left
@@ -78,9 +104,47 @@ class DoubleLinkedList:
 			cur_ptr = cur_ptr.next
 
 		# Traversing backward using prev ptr of node
+		op = ''
 		while cur_ptr != None:
-			print cur_ptr.data ,
+			op += ' -><- ' if op else ''
+			op += str(cur_ptr.data)
 			cur_ptr = cur_ptr.prev
+
+		print op
+
+
+	# Delete from begining of DLL
+	def delete_head(self):
+
+		# Save the cur head node data
+		ptr = self.head.data
+
+		# Make 2nd node as new head node
+		next_node = self.head.next
+		next_node.prev = None
+		self.head = next_node
+
+		return ptr
+
+
+	# Delete last node
+	def delete_last(self):
+
+		# traverse till last node 
+		cur_ptr = self.head
+
+		while cur_ptr.next != None :
+			cur_ptr = cur_ptr.next
+
+		# save data of last node
+		tmp = cur_ptr.data
+
+		cur_ptr.prev.next = None
+
+		cur_ptr.prev = None
+
+		return tmp
+
 
 
 # Code execution starts here
@@ -96,5 +160,9 @@ if __name__ == '__main__':
 		dll.insert_at_end(i)
 
 	dll.print_forward()
+	print dll.delete_head()
+	print dll.delete_last()
+	dll.print_forward()
+
 
 
