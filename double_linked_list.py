@@ -146,6 +146,16 @@ class DoubleLinkedList:
 		return tmp
 
 
+	# Delete a given node
+	def delete_given_node(self, ptr):
+
+		ptr.prev.next = ptr.next
+		ptr.next.prev = ptr.prev
+
+		return ptr.data
+
+
+
 	# Reverse Dll
 	def reverse(self):
 
@@ -179,10 +189,10 @@ if __name__ == '__main__':
 	for i in [6, 7, 8, 9, 10]:
 		dll.insert_at_end(i)
 
-	# dll.print_forward()
-	# print dll.delete_head()
-	# print dll.delete_last()
-	# dll.print_forward()
+	dll.print_forward()
+	print dll.delete_head()
+	print dll.delete_last()
+	dll.print_forward()
 
 	dll.reverse()
 	dll.print_forward()
