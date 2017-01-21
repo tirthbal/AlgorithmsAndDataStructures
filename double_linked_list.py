@@ -149,7 +149,10 @@ class DoubleLinkedList:
 	# Delete a given node
 	def delete_given_node(self, ptr):
 
+		# make the next of previous node equals to next of 
+		# the node to be deleted
 		ptr.prev.next = ptr.next
+
 		ptr.next.prev = ptr.prev
 
 		return ptr.data
