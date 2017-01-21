@@ -142,7 +142,7 @@ class DoubleLinkedList:
 		cur_ptr.prev.next = None
 
 		cur_ptr.prev = None
-
+		
 		return tmp
 
 
