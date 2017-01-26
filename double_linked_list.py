@@ -43,10 +43,11 @@ class DoubleLinkedList:
 		# Check for dll is empty
 		if not self.head:
 			self.head = new_node
+			return
 
 		# Traversing till last node
 		ptr = self.head
-		while ptr.next != None:
+		while ptr.next:
 			ptr = ptr.next
 
 		# Make last node as prev element of last node
@@ -175,7 +176,32 @@ class DoubleLinkedList:
 		if tmp:
 			self.head = tmp.prev
 
+	def partition(self, start, end):
+		pivot = start
+		beg = start.next
+		cur_p = start.next
 
+		while beg != end and beg:
+			if beg.data < pivot.data:
+				cur_p.data, beg.data = beg.data, cur_p.data
+				cur_p = cur_p.next
+			beg = beg.next
+		if start and cur_p:
+			start.data, cur_p.prev.data = cur_p.prev.data, start.data
+			return cur_p.prev
+
+	def _quick_sort(self, start, end):
+		if start != end:
+			p = self.partition(start, end)
+			self._quick_sort(start, p.prev)
+			self._quick_sort(p.next, end)
+
+	# Quick sort in dll
+	def quick_sort(self):
+		ptr = self.head
+		while ptr.next != None:
+			ptr = ptr.next
+		self._quick_sort(self.head, ptr)
 
 
 
@@ -183,21 +209,26 @@ class DoubleLinkedList:
 # Code execution starts here
 if __name__ == '__main__':
 	dll = DoubleLinkedList()
-	for i in [5, 4, 3, 2, 1]:
-		dll.insert_at_beg(i)
+	# for i in [5, 4, 3, 2, 1]:
+	# 	dll.insert_at_beg(i)
 
-	dll.print_forward()
-	dll.print_backward()
+	# dll.print_forward()
+	# dll.print_backward()
 
-	for i in [6, 7, 8, 9, 10]:
+	# for i in [6, 7, 8, 9, 10]:
+	# 	print i
+	# 	dll.insert_at_end(i)
+
+	# dll.print_forward()
+	# # print dll.delete_head()
+	# # print dll.delete_last()
+	# dll.print_forward()
+
+	# # dll.reverse()
+	# dll.print_forward()
+	for i in [4, 6, 5, 2, 10, 8, 1, 7, 3, 9]:
 		dll.insert_at_end(i)
-
-	dll.print_forward()
-	print dll.delete_head()
-	print dll.delete_last()
-	dll.print_forward()
-
-	dll.reverse()
+	dll.quick_sort()
 	dll.print_forward()
 
 
