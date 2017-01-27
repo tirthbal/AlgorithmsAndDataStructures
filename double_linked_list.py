@@ -180,21 +180,24 @@ class DoubleLinkedList:
 		pivot = start
 		beg = start.next
 		cur_p = start.next
-
+		prev_p = start
+		if not cur_p:
+			return prev_p
 		while beg != end and beg:
 			if beg.data < pivot.data:
 				cur_p.data, beg.data = beg.data, cur_p.data
+				prev_p = cur_p
 				cur_p = cur_p.next
 			beg = beg.next
-		if start and cur_p:
-			start.data, cur_p.prev.data = cur_p.prev.data, start.data
-			return cur_p.prev
+		start.data, prev_p.data = prev_p.data, start.data
+		return prev_p
 
 	def _quick_sort(self, start, end):
-		if start != end:
-			p = self.partition(start, end)
-			self._quick_sort(start, p.prev)
-			self._quick_sort(p.next, end)
+		if start == end or start is None or end is None:
+			return
+		p = self.partition(start, end)
+		self._quick_sort(start, p.prev)
+		self._quick_sort(p.next, end)
 
 	# Quick sort in dll
 	def quick_sort(self):
