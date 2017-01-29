@@ -180,7 +180,7 @@ class DoubleLinkedList:
 		pivot = start
 		beg = start.next
 		cur_p = start.next
-		prev_p = start
+		prev_p = cur_p
 		if not cur_p:
 			return prev_p
 		while beg != end and beg:
@@ -193,9 +193,12 @@ class DoubleLinkedList:
 		return prev_p
 
 	def _quick_sort(self, start, end):
-		if start == end or start is None or end is None:
+		if start is None or end is None:
+			return
+		if start == end or end.next == start:
 			return
 		p = self.partition(start, end)
+		self.print_forward()
 		self._quick_sort(start, p.prev)
 		self._quick_sort(p.next, end)
 
@@ -206,9 +209,21 @@ class DoubleLinkedList:
 			ptr = ptr.next
 		self._quick_sort(self.head, ptr)
 
-
-
-
+# 4 5 6 7 1 2 3
+# start = 4 end = 3
+# 4 1 6 7 5 2 3 cur = 6, prev = 1
+# 4 1 2 7 5 6 3 cur = 7, prev = 2
+# 4 1 2 3 5 6 7 cur  = 5, prev = 3
+# 3 1 2 4 5 6 7 cur = 5, prev = 4
+# p = 4
+# 3 1 2  4  5 6 7
+# 3 1 2                              5 6 7
+# start = 3 end = 2                  start = 5 end = 7
+# 3 1 2 cur = 2 , prev = 1           5 6 7 cur = 6 , prev = 5
+# 3 1 2 cur = None , prev = 2        5 6 7 cur = 6,  prev = 5
+# 2 1 3 cur = None, prev = 3     
+# p = 3                              p = 5
+# 2 1  3 4 5  6 7
 # Code execution starts here
 if __name__ == '__main__':
 	dll = DoubleLinkedList()
@@ -229,7 +244,8 @@ if __name__ == '__main__':
 
 	# # dll.reverse()
 	# dll.print_forward()
-	for i in [4, 6, 5, 2, 10, 8, 1, 7, 3, 9]:
+	# 4, 6, 5, 2, 10, 8, 1, 7, 3, 9
+	for i in [3, 1, 2]:
 		dll.insert_at_end(i)
 	dll.quick_sort()
 	dll.print_forward()
