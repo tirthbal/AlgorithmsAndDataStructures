@@ -241,5 +241,11 @@ if __name__ == '__main__':
 	dll2.quick_sort()
 	dll2.print_forward()
 
+	dll3 = DoubleLinkedList()
+	for i in [1, 2, 3, 4, 5, 6, 7, 8]:
+		dll3.insert_at_end(i)
+	dll3.quick_sort()
+	dll3.print_forward()
+
 
 
