@@ -14,7 +14,7 @@ def merge(array, beg, mid, end):
 		B.append(array[i])
 		i = i + 1
 	while j <= end:
-		B.append(array[i])
+		B.append(array[j])
 		j = j + 1
 
 	i = beg
@@ -42,3 +42,11 @@ merge_sort(q, 0, len(q) - 1)
 
 print "Sorted Array"
 print q
+
+print "Original Array"
+print s
+
+merge_sort(s, 0, len(s) - 1)
+
+print "Sorted Array"
+print s
