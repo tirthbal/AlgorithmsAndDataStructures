@@ -13,6 +13,13 @@ class DoubleLinkedList:
 		self.head = None
 
 
+	# Return last node of the list
+	def last_node(self):
+		ptr = self.head
+		while ptr.next != None:
+			ptr = ptr.next
+		return ptr
+
 	# Insert a node in begining of double ll
 	def insert_at_beg(self, data):
 		
@@ -204,10 +211,16 @@ class DoubleLinkedList:
 
 	# Quick sort in dll
 	def quick_sort(self):
+		self._quick_sort(self.head, self.last_node())
+
+	# Merge sort helper
+	def _merge_sort(self, start, end):
+		print start.data
+
+	# Merge sort in dll
+	def merge_sort(self):
 		ptr = self.head
-		while ptr.next != None:
-			ptr = ptr.next
-		self._quick_sort(self.head, ptr)
+		self._merge_sort(self.head, self.last_node())
 
 
 # Code execution starts here
