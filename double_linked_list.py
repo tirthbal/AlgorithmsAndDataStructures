@@ -213,13 +213,62 @@ class DoubleLinkedList:
 	def quick_sort(self):
 		self._quick_sort(self.head, self.last_node())
 
+	def find_mid(self, start, end):
+		slwptr = start
+		fastptr = slwptr.next
+		if not fastptr:
+			return slwptr
+		while fastptr.next and fastptr != end.next:
+			slwptr = slwptr.next
+			fastptr = fastptr.next.next
+		return slwptr
+
+	def merge(self, start, mid, end):
+		print "I'm calleddddddd"
+		beg_first_half = start
+		beg_second_half = mid.next
+		end_first_half = mid
+		end_second_half = end
+		tmp = DoubleLinkedList()
+		while (beg_first_half != end_first_half.next and 
+			beg_second_half != end_second_half.next):
+			if beg_second_half.data < beg_first_half.data:
+				tmp.insert_at_end(beg_second_half.data)
+				beg_second_half = beg_second_half.next
+			else:
+				tmp.insert_at_end(beg_first_half.data)
+				beg_first_half = beg_first_half.next
+
+		while beg_first_half != end_first_half.next:
+			tmp.insert_at_end(beg_first_half.data)
+			beg_first_half = beg_first_half.next
+
+		while beg_second_half != end_second_half.next:
+			tmp.insert_at_end(beg_second_half.data)
+			beg_second_half = beg_second_half.next
+
+		ptr = tmp.head
+		while start != end.next:
+			start.data = ptr.data
+			start = start.next
+			ptr = ptr.next
+
+	
 	# Merge sort helper
 	def _merge_sort(self, start, end):
-		print start.data
+		if start is None or end is None:
+			return
+		if start == end or end.next == start:
+			return
+		mid = self.find_mid(start, end)
+		self._merge_sort(start, mid)
+		self._merge_sort(mid.next, end)
+		self.merge(start, mid, end)
+		return
+
 
 	# Merge sort in dll
 	def merge_sort(self):
-		ptr = self.head
 		self._merge_sort(self.head, self.last_node())
 
 
@@ -246,19 +295,20 @@ if __name__ == '__main__':
 	# 4, 6, 5, 2, 10, 8, 1, 7, 3, 9
 	for i in [4, 6, 5, 2, 10, 8, 1, 7, 3, 9]:
 		dll.insert_at_end(i)
-	dll.quick_sort()
+	# dll.quick_sort()
+	dll.merge_sort()
 	dll.print_forward()
-	dll2 = DoubleLinkedList()
-	for i in [4, 5, 6, 7, 1, 2, 3]:
-		dll2.insert_at_end(i)
-	dll2.quick_sort()
-	dll2.print_forward()
+	# dll2 = DoubleLinkedList()
+	# for i in [4, 5, 6, 7, 1, 2, 3]:
+	# 	dll2.insert_at_end(i)
+	# dll2.quick_sort()
+	# dll2.print_forward()
 
-	dll3 = DoubleLinkedList()
-	for i in [1, 2, 3, 4, 5, 6, 7, 8]:
-		dll3.insert_at_end(i)
-	dll3.quick_sort()
-	dll3.print_forward()
+	# dll3 = DoubleLinkedList()
+	# for i in [1, 2, 3, 4, 5, 6, 7, 8]:
+	# 	dll3.insert_at_end(i)
+	# dll3.quick_sort()
+	# dll3.print_forward()
 
 
 
