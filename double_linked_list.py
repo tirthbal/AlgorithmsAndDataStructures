@@ -216,15 +216,14 @@ class DoubleLinkedList:
 	def find_mid(self, start, end):
 		slwptr = start
 		fastptr = slwptr.next
-		if not fastptr:
+		if not fastptr or fastptr == end:
 			return slwptr
-		while fastptr.next and fastptr != end.next:
+		while fastptr and fastptr.next and (fastptr != end and fastptr != end.next):
 			slwptr = slwptr.next
 			fastptr = fastptr.next.next
 		return slwptr
 
 	def merge(self, start, mid, end):
-		print "I'm calleddddddd"
 		beg_first_half = start
 		beg_second_half = mid.next
 		end_first_half = mid
@@ -295,20 +294,24 @@ if __name__ == '__main__':
 	# 4, 6, 5, 2, 10, 8, 1, 7, 3, 9
 	for i in [4, 6, 5, 2, 10, 8, 1, 7, 3, 9]:
 		dll.insert_at_end(i)
-	# dll.quick_sort()
+	# # dll.quick_sort()
 	dll.merge_sort()
 	dll.print_forward()
-	# dll2 = DoubleLinkedList()
-	# for i in [4, 5, 6, 7, 1, 2, 3]:
-	# 	dll2.insert_at_end(i)
+	dll2 = DoubleLinkedList()
+	for i in [4, 5, 6, 7, 1, 2, 3]:
+		dll2.insert_at_end(i)
 	# dll2.quick_sort()
-	# dll2.print_forward()
+	dll2.merge_sort()
+	dll2.print_forward()
 
 	# dll3 = DoubleLinkedList()
 	# for i in [1, 2, 3, 4, 5, 6, 7, 8]:
 	# 	dll3.insert_at_end(i)
 	# dll3.quick_sort()
-	# dll3.print_forward()
-
+	# # dll3.print_forward()
+	# sdll = DoubleLinkedList()
+	# for i in [3, 4]:
+	# 	sdll.insert_at_end(i)
+	# print sdll.find_mid(sdll.head, sdll.last_node()).data
 
 
