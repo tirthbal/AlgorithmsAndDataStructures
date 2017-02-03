@@ -270,6 +270,58 @@ class DoubleLinkedList:
 	def merge_sort(self):
 		self._merge_sort(self.head, self.last_node())
 
+	# Split the dll into two halves
+	def split(self, tmpHead):
+		fast = slow = tmpHead
+		while True:
+			if fast.next is None:
+				break
+			if fast.next.next is None:
+				break
+			fast = fast.next.next
+			slow = slow.next
+
+		tmp = slow.next
+		slow.next = None
+		return tmp
+
+	# Merge function to two merge two dll
+	def merge_geek(self, first, second):
+		if first is None:
+			return second
+		if second is None:
+			return first
+		if first.data < second.data:
+			first.next = self.merge_geek(first.next, second)
+			first.next.prev = first
+			first.prev = None
+			return first
+		else:
+			second.next = self.merge_geek(first, second.next)
+			second.next.prev = second
+			second.prev = None
+			return second
+
+	# Merge sort geeks for geeks
+	def __merge_sort_geek(self, tmpHead):
+		if tmpHead is None:
+			return tmpHead
+		if tmpHead.next is None:
+			return tmpHead
+
+		second = self.split(tmpHead)
+
+		# Recur for left and right halves
+		tmpHead = self.__merge_sort_geek(tmpHead)
+		second = self.__merge_sort_geek(second)
+
+		# Merge the two sorted halves
+		return self.merge_geek(tmpHead, second)
+
+	def merge_sort_geek(self):
+		self.head = self.__merge_sort_geek(self.head)
+
+
 
 # Code execution starts here
 if __name__ == '__main__':
@@ -295,7 +347,7 @@ if __name__ == '__main__':
 	for i in [4, 6, 5, 2, 10, 8, 1, 7, 3, 9]:
 		dll.insert_at_end(i)
 	# # dll.quick_sort()
-	dll.merge_sort()
+	dll.merge_sort_geek()
 	dll.print_forward()
 	dll2 = DoubleLinkedList()
 	for i in [4, 5, 6, 7, 1, 2, 3]:
