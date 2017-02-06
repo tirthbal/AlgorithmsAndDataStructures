@@ -227,6 +227,35 @@ class LinkedList:
             new_node.next = tmp
             new_node = new_node.next
 
+    
+    # Delete the last node
+    def delete_last(self):
+        if not self.head:
+            return None
+        ptr = self.head
+        if not ptr.next:
+            data = self.head.data
+            self.head = None
+            return data
+        while ptr.next.next:
+            ptr = ptr.next
+        data = ptr.next.data
+        ptr.next = None
+        return data
+
+    # Delete the begining node
+    def delete_beg(self):
+        if not self.head:
+            return None
+        data = self.head.data
+        self.head = self.head.next
+        return data
+
+
+
+
+
+
 
 
 
