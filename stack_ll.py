@@ -19,6 +19,8 @@ class Stack_ll:
 	
 	# get the top of the stack
 	def get_top(self):
+		if not self.top.head:
+			return None
 		return self.top.head.data
 
 
