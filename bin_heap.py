@@ -25,11 +25,10 @@ class BinHeap:
 	def min_child(self, pos):
 		if 2 * pos + 1 > self.current_size:
 			return 2*pos
-		else:
-			if self.heapList[2 * pos] < self.heapList[2 * pos + 1]:
-				return 2 * pos
-			else:
-				return 2 * pos + 1
+
+		if self.heapList[2 * pos] < self.heapList[2 * pos + 1]:
+			return 2 * pos
+		return 2 * pos + 1
 
 	def insert(self, data):
 		self.heapList.append(data)
