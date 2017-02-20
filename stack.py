@@ -30,6 +30,8 @@ class Stack:
 
 	# Access self.top element
 	def get_top(self):
+		if self.top == 0:
+			return None
 		return self.buffer[self.top - 1]
 
 
