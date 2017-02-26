@@ -4,23 +4,23 @@ from linked_list import Node
 class Queue:
 
 	def __init__(self):
-		self.front = Node()
+		self.front = None
 		self.rear = self.front
 
 	def enqueue(self, data):
-		if not self.front.data:
-			self.front.data = data
+		new_node = Node()
+		new_node.data = data
+		if not self.front:
+			self.front = new_node
 			self.rear = self.front
 			return
-		newNode = Node()
-		newNode.data = data
-		self.rear.next = newNode
+		self.rear.next = new_node
 		self.rear = self.rear.next
 
 	def dequeue(self):
 		if not self.front:
 			print 'Queue is empty.'
-			return
+			return 
 		ele = self.front.data
 		self.front = self.front.next
 		return ele
