@@ -1,3 +1,5 @@
+from queue_ll import Queue
+
 class Node:
 	def __init__(self, data=None):
 		self.left = None
@@ -30,3 +32,16 @@ class Tree:
 		self.postorder(curnode.left)
 		self.postorder(curnode.right)
 		print curnode.data
+
+	def bfs(self):
+		if not self.root:
+			return 
+		qu = Queue()
+		qu.enqueue(self.root)
+		while qu.get_front():
+			curnode = qu.dequeue()
+			print curnode.data
+			qu.enqueue(curnode.left)
+			qu.enqueue(curnode.right)
+	
+		
