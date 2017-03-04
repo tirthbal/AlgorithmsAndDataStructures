@@ -44,4 +44,18 @@ class Tree:
 			qu.enqueue(curnode.left)
 			qu.enqueue(curnode.right)
 	
+	def height(self, curnode):
+		if not curnode:
+			return 0
+		
+		lheight = height(curnode.left) + 1
+		rheight = height(curnode.right) + 1
+
+		if lheight < rheight:
+			return rheight
+		else:
+			return lheight
+
+
+
 		
