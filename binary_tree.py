@@ -56,6 +56,19 @@ class Tree:
 		else:
 			return lheight
 
+	def __level_order_helper(self, curnode, level):
+		if not curnode:
+			return
+		if level == 1:
+			print curnode.data
+		else:
+			self.__level_order_helper(curnode.left, level - 1)
+			self.__level_order_helper(curnode.right, level - 1)
+
+	def level_order(self):
+		height_of_tree = self.height(self.root)
+		for i in range(1, height_of_tree + 1):
+			self.__level_order_helper(self.root, i)
 
 
 		
