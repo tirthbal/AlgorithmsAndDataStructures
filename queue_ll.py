@@ -21,14 +21,14 @@ class Queue:
 		if not self.front:
 			print 'Queue is empty.'
 			return 
-		ele = self.front.data
+		ele = self.front
 		self.front = self.front.next
 		return ele
 
 	def get_front(self):
 		if not self.front:
 			return None
-		return self.front.data
+		return self.front
 
 
 if __name__ == '__main__':
