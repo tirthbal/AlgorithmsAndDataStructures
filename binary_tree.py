@@ -70,5 +70,18 @@ class Tree:
 		for i in range(1, height_of_tree + 1):
 			self.__level_order_helper(self.root, i)
 
+	def diameter(self, curnode):
+		if not curnode:
+			return 0
+		lheight = self.height(curnode.left)
+		rheight = self.height(curnode.right)
+		ldiameter = self.diameter(curnode.left)
+		rdiameter = self.diameter(curnode.right)
+		max_diameter = max(ldiameter, rdiameter)
+		max_diameter = max(max_diameter, lheight + rheight + 1)
+		return max_diameter
+
+
+
 
 		
