@@ -1,4 +1,5 @@
 from queue_ll import Queue
+from stack_ll import Stack
 
 class Node:
 	def __init__(self, data=None):
@@ -80,6 +81,25 @@ class Tree:
 		max_diameter = max(ldiameter, rdiameter)
 		max_diameter = max(max_diameter, lheight + rheight + 1)
 		return max_diameter
+
+	def inorder_without_recursion(self):
+		if not self.root:
+			return
+		st = Stack_ll()
+		st.push(self.root)
+		curnode = self.root
+		while st.get_top():
+			curnode = st.get_top()
+			while curnode.left:
+				st.push(curnode.left)
+				curnode = curnode.left
+
+			print curnode.data
+			curnode = st.get_top()
+			st.pop()
+			print curnode.data
+			if curnode.right:
+				st.push(curnode.right)
 
 
 
