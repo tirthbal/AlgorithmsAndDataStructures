@@ -21,7 +21,7 @@ class Stack_ll:
 	def get_top(self):
 		if not self.top.head:
 			return None
-		return self.top.head.data
+		return self.top.head
 
 
 if __name__ == '__main__':
