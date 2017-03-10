@@ -124,6 +124,25 @@ class Tree:
 					current = current.right
 
 
+# Creating binary tree from the inorder and preorder traversal
+def buid_tree(in_order, in_start, in_end, pre_order, pre_ind):
+
+	if in_start > in_end:
+		return None
+	new_Tree = Node()
+	root_data = pre_order[pre_ind]
+	try:
+		root_index = in_order.index(root_data)
+	except ValueError:
+		root_index = None
+		return None
+	new_Tree.data = root_data
+	new_Tree.left = build_tree(in_order, in_start, root_index - 1, pre_order, pre_ind + 1)
+	new_Tree.right = build_tree(in_order, root_index + 1, in_end, pre_order, pre_ind + 1)
+	return new_Tree
+
+
+
 
 
 		
