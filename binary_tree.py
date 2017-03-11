@@ -124,6 +124,29 @@ class Tree:
 					current = current.right
 
 
+	def width(self):
+		# Width of tree is defined as the maximum number of node at
+		# any level of the tree
+		q = []
+		q.insert(0, self.root)
+		max_width = 0
+		while q != []:
+			count = len(q)
+			max_width = max(count, max_width)
+			while count != 0 :
+				count  = count - 1
+				tmp = q[0]
+				q.pop()
+				if tmp.left is not None:
+					q.insert(0, tmp.left)
+				if tmp.right is not None:
+					q.insert(0, tmp.right)
+		return max_width
+
+
+
+
+
 # Creating binary tree from the inorder and preorder traversal
 def buid_tree(in_order, in_start, in_end, pre_order, pre_ind):
 
