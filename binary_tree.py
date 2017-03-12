@@ -143,6 +143,23 @@ class Tree:
 					q.insert(0, tmp.right)
 		return max_width
 
+	def get_width_of_current_level(self, node, level):
+		if node is None:
+			return 0
+		if level == 1:
+			return 1
+		ans  = self.get_width_of_current_level(node.left, level - 1)
+		ans += self.get_width_of_current_level(node.right, level - 1)
+		return ans
+
+	def width_recur(self):
+		max_width = 0
+		height = self.height()
+		for i in range(1, height + 1):
+			cur_width = self.get_width_of_current_level(root, i)
+			max_width = max(max_width, cur_width)
+		return max_width
+
 
 
 
