@@ -160,6 +160,19 @@ class Tree:
 			max_width = max(max_width, cur_width)
 		return max_width
 
+	def k_dis_helper(self, curnode, k):
+		if not curnode:
+			return
+		if k == 0:
+			print curnode.data
+			return
+		self.k_dis_helper(curnode.left, k - 1)
+		self.k_dis_helper(curnode.right, k - 1)
+
+	def print_node_at_k_dis(self, k):
+		self.k_dis_helper(self.root, k)
+
+
 
 
 
