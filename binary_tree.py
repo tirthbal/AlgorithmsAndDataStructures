@@ -172,6 +172,35 @@ class Tree:
 	def print_node_at_k_dis(self, k):
 		self.k_dis_helper(self.root, k)
 
+	def print_ancestors_of_a_node(self, node_value):
+		if not self.root:
+			return
+		node_qu = Queue()
+		ancestor_list_qu = Queue()
+		node_qu.enqueue(self.root)
+		ancestor_list_qu.enqueue([])
+		while node_qu.get_front():
+			curnode = node_qu.get_front()
+			if curnode.data == node_value:
+				print ancestor_list_qu.get_front()
+				break
+			if curnode.left:
+				node_qu.enqueue(curnode.left)
+				tmp = ancestor_list_qu.get_front()
+				tmp += [curnode.data]
+				ancestor_list_qu.enqueue(tmp)
+			if curnode.right:
+				node_qu.enqueue(curnode.right)
+				tmp = ancestor_list_qu.get_front()
+				tmp += [curnode.data]
+				ancestor_list_qu.enqueue(tmp)
+			node_qu.dequeue()
+			ancestor_list_qu.dequeue()
+
+
+
+
+
 
 
 
