@@ -197,6 +197,19 @@ class Tree:
 			node_qu.dequeue()
 			ancestor_list_qu.dequeue()
 
+	def print_ancestors_helper(self, curnode, target):
+		if not curnode:
+			return false
+		if curnode.data == target:
+			return true
+		if (self.print_ancestors_helper(curnode.left, target) or
+			self.print_ancestors_helper(curnode.right, target)):
+			print curnode.data
+			return true
+
+	def print_ancestors_of_node_recur(self, node_value):
+		self.print_ancestors_helper(self.root, node_value)
+
 
 
 
