@@ -12,11 +12,15 @@ class Tree:
 
 	def __init__(self, data):
 		self.root = Node(data)
+		self.in_trav = []
+		self.pre_trav = []
+		self.post_trav = []
 
 	def inorder(self, curnode):
 		if not curnode:
 			return
 		self.inorder(curnode.left)
+		self.in_trav.append(curnode.data)
 		print curnode.data
 		self.inorder(curnode.right)
 
@@ -24,6 +28,7 @@ class Tree:
 		if not curnode:
 			return
 		print curnode.data
+		self.pre_trav.append(curnode.data)
 		self.preorder(curnode.left)
 		self.preorder(curnode.right)
 
@@ -33,6 +38,7 @@ class Tree:
 		self.postorder(curnode.left)
 		self.postorder(curnode.right)
 		print curnode.data
+		self.post_trav.append(curnode.data)
 
 	def bfs(self):
 		if not self.root:
@@ -237,7 +243,19 @@ def buid_tree(in_order, in_start, in_end, pre_order, pre_ind):
 	return new_Tree
 
 
+bool check_is_subarray(list1, list2):
+	str1 = ''.join(list1)
+	str2 = ''.join(list2)
+	return str1 in str2 or  str2 in str1
 
+
+# Checking is a binary tree is subtree of another or vice versa
+def isSubtree(tree1, tree2):
+	tree1.inorder()
+	tree1.pre_order
+	tree2.inorder()
+	tree1.preorder()
+	return check_is_subarray(tree1.in_trav, tree2.in_trav) and check_is_subarray(tree1.pre_trav, tree2.pre_trav)
 
 
 		
