@@ -44,4 +44,26 @@ class BinarySearchTree:
     	self.__insert_helper(self.root, newnode)
 
 
+    def __inorder_helper(self, curnode):
+    	if not curnode:
+    		return
+    	self.__inorder_helper(curnode.left)
+    	print curnode.data
+    	self.__inorder_helper(curnode.right)
+
+    def inorder(self):
+    	self.__inorder_helper(self.root)
+    	return
+
+
+    def min_value_node(node):
+    	current = node
+    	while current.left:
+    		curnode = current.left
+   
+    	return current
+
+
+
+
 	
