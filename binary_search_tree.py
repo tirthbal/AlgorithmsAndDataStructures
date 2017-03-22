@@ -63,7 +63,34 @@ class BinarySearchTree:
    
     	return current
 
+    def __delete_helper(self, curnode, key):
+    	if curnode is None:
+    		return 
+    	if key < curnode.data:
+    		self.__delete_helper(curnode.left, key)
+    	elif key > curnode.data:
+    		self.__delete_helper(curnode.right, key)
+    	else:
+    		if curnode.left is None:
+    			tmp = curnode.right
+    			curnode = tmp
+    			return
+    		if curnode.right is None:
+    			tmp = curnode.left
+    			curnode = tmp
+    			return
 
+    		tmp = self.min_value_node(curnode)
+
+    		curnode.data = tmp.data
+
+    		curnode.right = self.__delete_helper(curnode.right, key)
+
+    		return
+
+
+    def delete(self, key):
+    	return self.__delete_helper(self.root, key)
 
 
 	
