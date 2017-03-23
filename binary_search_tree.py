@@ -93,4 +93,36 @@ class BinarySearchTree:
     	return self.__delete_helper(self.root, key)
 
 
+    def __find_pre_suc_helper(self, curnode, key):
+    	if curnode is None:
+    		return
+
+    	if curnode.data == key:
+
+    		if curnode.left is not None:
+
+    			tmp = curnode.left
+    			while tmp.right:
+    				tmp = tmp.right
+    			find_pre_suc.pre = tmp
+
+    		if curnode.right is not None:
+
+    			tmp = curnode.right
+    			while tmp.left is not None:
+    				tmp = tmp.left
+    			find_pre_suc.suc = tmp
+    		return
+    	elif curnode.data > key:
+    		find_pre_suc.suc = curnode
+    		self.__find_pre_suc_helper(curnode.left, key)
+    	else:
+    		find_pre_suc.pre = curnode
+    		self.__find_pre_suc_helper(curnode.right, key)
+
+
+    def find_pre_suc(self, key):
+    	self.__find+find_pre_suc_helper(self.root, key)
+
+
 	
