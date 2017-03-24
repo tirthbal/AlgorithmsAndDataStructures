@@ -125,4 +125,20 @@ class BinarySearchTree:
     	self.__find+find_pre_suc_helper(self.root, key)
 
 
+    def is_bst_helper(self, node, mini, maxi):
+    	if node is None:
+    		return True
+
+    	if node.data < mini || node.data > maxi:
+    		return False
+
+    	return (self.is_bst_helper(node.left, mini, node.data + 1) or 
+    		self.is_bst_helper(node.right, node.data - 1, maxi))
+    
+    def is_bst(self):
+    	INT_MAX = 4294967296
+		INT_MIN = -4294967296
+		retrun self.is_bst_helper(self.root, INT_MIN, INT_MAX)
+
+
 	
