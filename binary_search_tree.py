@@ -140,5 +140,21 @@ class BinarySearchTree:
 		INT_MIN = -4294967296
 		retrun self.is_bst_helper(self.root, INT_MIN, INT_MAX)
 
+	def __lca_helper(self, curnode, node_a, node_b):
+		if curnode is None:
+			return None
+
+		if curnode.data < node_a.data and curnode.data < node_b.data:
+			return self.__lca_helper(curnode.right, node_a, node_b)
+
+		if curnode.data > node_a.data and curnode.data > node_b.data:
+			return self.__lca_helper(curnode.left, node_a, node_b)
+
+		return curnode
+
+	def lca(self, node_a, node_b):
+		return self.__lca_helper(self.root, node_a, node_b)
+
+
 
 	
