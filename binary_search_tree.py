@@ -156,5 +156,21 @@ class BinarySearchTree:
 		return self.__lca_helper(self.root, node_a, node_b)
 
 
+	def inorder_suc(self, node):
+
+		if node.right is not None:
+			return min_value_node(node.right)
+
+		p = node.parent
+		n = node
+		while p is not None:
+			if n != p.right:
+				break
+			n = p
+			p = p.parent
+
+		return p
+
+
 
 	
