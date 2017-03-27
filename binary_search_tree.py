@@ -9,6 +9,7 @@ class BinarySearchTree:
 
 	def __init__(self):
 		self.root = Node()
+		self.inorder_list = []
 
 	def __search_helper(self, curnode, target):
 		if not curnode:
@@ -49,6 +50,7 @@ class BinarySearchTree:
     		return
     	self.__inorder_helper(curnode.left)
     	print curnode.data
+    	self.inorder_list.append(curnode.data)
     	self.__inorder_helper(curnode.right)
 
     def inorder(self):
@@ -171,6 +173,9 @@ class BinarySearchTree:
 
 		return p
 
+	def kth_element(self, k):
+		self.inorder(self.root)
+		return self.inorder_list[k - 1]
 
 
 	
