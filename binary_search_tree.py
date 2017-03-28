@@ -178,4 +178,35 @@ class BinarySearchTree:
 		return self.inorder_list[k - 1]
 
 
+def merge_bsts(bst1, bst2):
+	bst1.inorder()
+	bst2.inorder()
+	inorder_list1 = bst1.inorder_list
+	inorder_list2 = bst2.inorder_list
+	
+	len1 = len(inorder_list1)
+	len2 = len(inorder_list2)
+
+	i, j = 0, 0
+
+	while i < len1 and j < len2:
+
+		if inorder_list1[i] < inorder_list2[j]:
+			print inorder_list1[i]
+			i = i + 1
+		else :
+			print inorder_list2[j]
+			j = j + 1
+
+	while i < len1:
+		print inorder_list1[i]
+		i = i + 1
+
+	while j < len2:
+		print inorder_list2[j]
+		j = j + 1
+
+
+
+
 	
