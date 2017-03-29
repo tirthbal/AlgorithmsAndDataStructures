@@ -178,6 +178,35 @@ class BinarySearchTree:
 		return self.inorder_list[k - 1]
 
 
+	def correct_bst_helper(self, cur_node, prev_node, first, middle, last):
+		if curnode is None:
+			return
+
+		self.correct_bst_helper(cur_node.left, prev_node, first, middle, last)
+
+		if prev_node is not None and cur_node.data < prev_node.data:
+
+			if first is None:
+				first = prev_node
+				middle = cur_node
+			else:
+				last = cur_node
+		
+		prev_node = cur_node
+
+		self.correct_bst_helper(cur_node.right, prev_node, first, middle, last)
+
+	def correct_bst(self, first=None, middle=None, last=None):
+		self.correct_bst_helper(self.root, None, first, middle, last)
+
+		if first is not None and last is not None:
+			first.data, last.data = last.data, first.data
+
+		elif first is not None and middle is not None:
+			first.data, middle.data = first.data, middle.data
+
+
+
 def merge_bsts(bst1, bst2):
 	bst1.inorder()
 	bst2.inorder()
@@ -205,6 +234,8 @@ def merge_bsts(bst1, bst2):
 	while j < len2:
 		print inorder_list2[j]
 		j = j + 1
+
+
 
 
 
