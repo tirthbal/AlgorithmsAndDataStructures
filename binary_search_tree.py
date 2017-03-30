@@ -205,6 +205,20 @@ class BinarySearchTree:
 		elif first is not None and middle is not None:
 			first.data, middle.data = first.data, middle.data
 
+	def __ceil_helper(self, curnode, key):
+		if curnode is None:
+			return
+		if curnode.data == key:
+			return curnode
+
+		if curnode.data < key:
+			return self.__ceil_helper(curnode.right, key)
+		else:
+			return self.__ceil_helper(curnode.left, key)
+
+	def ceil(self, key):
+		return self.__ceil_helper(self.root, key)
+
 
 
 def merge_bsts(bst1, bst2):
