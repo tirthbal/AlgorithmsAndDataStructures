@@ -220,6 +220,19 @@ class BinarySearchTree:
 		return self.__ceil_helper(self.root, key)
 
 
+	def pair_with_sum(self, sum):
+		self.inorder()
+		cur_list = self.inorder_list
+
+		hash_dict = {str(i): true for i in cur_list}
+
+		for i in cur_list:
+			tmp = sum - i
+			if str(tmp) in hash_dict:
+				return (i, tmp)
+		return (None, None)
+
+
 
 def merge_bsts(bst1, bst2):
 	bst1.inorder()
