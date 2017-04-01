@@ -263,8 +263,33 @@ def merge_bsts(bst1, bst2):
 		j = j + 1
 
 
+def find_bino_coeff(n, k):
+
+	ans = 1
+
+	# Since C(n, k) = C(n, n - k)
+	k = n - k if k > (n - k) else k
+
+	# Calculate value of [n*(n-1)*---*(n-k+1)] / [k*(k-1)*---*1]
+	for i in range(0, k):
+		ans *= (n - i)
+		ans /= (i + 1)
+
+	return ans
 
 
+
+
+def number_of_possible_bst(n):
+
+	# n: number of nodes in bst
+	# b_coeff : binomial coefficient of 2*n and n
+	b_coeff = find_bino_coeff(2*n, n)
+
+	# ans: number of possible unique bst
+	ans = b_coeff/(n + 1)
+
+	return ans
 
 
 	
