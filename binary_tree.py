@@ -217,6 +217,23 @@ class Tree:
 		self.print_ancestors_helper(self.root, node_value)
 
 
+	def binary_to_bst_helper(self, curnode, data_list):
+		if not curnode:
+			return
+
+		self.binary_to_bst_helper(curnode.left, data_list)
+
+		curnode.data = data_list[0]
+		data_list.pop()
+
+		self.binary_to_bst_helper(curnode.right, data_list)
+
+	def binary_to_bst(self):
+		self.inorder()
+		data_list = self.inorder_list
+		data_list.sort()
+
+
 
 
 
