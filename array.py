@@ -12,4 +12,20 @@ class Array:
 			if i == key:
 				print 'Key found'
 		print 'Key not found'
-		return
+
+
+	def binary_search(self, key):
+
+		beg,end = 0, len(self.array)
+
+		while beg <= end:
+			mid = (beg + end)/2
+			if self.array[mid] == key:
+				print 'Key found'
+				break
+			elif self.array[mid] < key:
+				beg = mid + 1
+			else:
+				end = mid - 1
+
+		print 'Key not found' 
