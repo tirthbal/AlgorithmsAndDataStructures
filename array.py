@@ -52,4 +52,12 @@ class Array:
 		del tmp
 		self.array = new_array
 
+	def delete_in_sorted(self, key):
+
+		# find the pos of the key
+		pos = self.binary_search(key)
+
+		self.array = self.array[:pos] + self.array[pos + 1: ]
+		
+
 
