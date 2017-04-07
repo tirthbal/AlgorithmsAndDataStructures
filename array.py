@@ -58,6 +58,20 @@ class Array:
 		pos = self.binary_search(key)
 
 		self.array = self.array[:pos] + self.array[pos + 1: ]
-		
+
+	def leaders(self):
+		# Leaders are those element in array 
+		# which are greater than element on the right side
+		length = len(self.array)
+		cur_max = self.array[-1]
+		ans = []
+		for i in range(length - 1, -1, -1):
+			if self.array[i] > cur_max:
+				ans.append(cur_max)
+				cur_max = self.array[i]
+
+		return ans
+
+
 
 
