@@ -72,6 +72,16 @@ class Array:
 
 		return ans
 
+	def sum_pair_x(self, x):
+		# Method find the pair with sum equal to x
+		hash_map = set()
+		for i in self.array:
+			if x - i in hash_map:
+				return i, x - i
+			hash_map.add(i)
+		return None, None
+
+
 
 
 
