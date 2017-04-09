@@ -81,6 +81,18 @@ class Array:
 			hash_map.add(i)
 		return None, None
 
+	def majority(self):
+		hash_map = {}
+		for i in self.array:
+			if str(i) in hash_map:
+				hash_map[str(i)] += 1
+				if hash_map[str(i)] >= len(self.array)/2:
+					return i
+			else:
+				hash_map.update({str(i): 1})
+
+		return None
+
 
 
 
