@@ -93,6 +93,15 @@ class Array:
 
 		return None
 
+	def odd_ele(self):
+		hash_map = {}
+		for i in self.array:
+			if str(i) in hash_map:
+				hash_map[str(i)] += 1
+			else:
+				hash_map.update({str(i): 1})
+		return [k for k, v in hash_map.items() if k % 2 != 0]
+
 
 
 
