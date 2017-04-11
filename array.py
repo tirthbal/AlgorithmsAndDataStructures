@@ -102,7 +102,20 @@ class Array:
 				hash_map.update({str(i): 1})
 		return [k for k, v in hash_map.items() if k % 2 != 0]
 
+	def kadane(self):
+		max_so_far = None
+		cur_sum = 0
+		for i in self.array:
+			cur_sum += i if cur_sum + i > 0 else 0
+			if max_so_far is None:
+				max_so_far = i
+			if cur_sum > max_so_far:
+				max_so_far = cur_sum
+			if cur_sum == 0 and i > max_so_far:
+				max_so_far = i
 
+
+[1, -1, 2, 3, -1 , 4, -5]
 
 
 
