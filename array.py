@@ -114,8 +114,12 @@ class Array:
 			if cur_sum == 0 and i > max_so_far:
 				max_so_far = i
 
+		return max_so_far
 
-[1, -1, 2, 3, -1 , 4, -5]
+	def missing_number(self, n):
+		series_sum = n*(n + 1)/2
+		array_sum = sum(self.array)
+		return series_sum - array_sum
 
 
 
